@@ -48,4 +48,47 @@ angular.module('myApp.services', [])
     "en": "Friendly",
     "es": "Amigable",
     def: "Kind and pleasant."
+  }])
+
+  .factory('Game', ['words', 'Question', function(words, Question){
+
+    function Game(){
+
+      this.availableQuestions = _.map(words, function(word){
+        new Question(word["en"], word["es"], word["def"])
+      })
+
+      this.askedQuestions = [];
+
+    };
+
+    return Game;
+
+
+  }])
+
+  .factory('Question', ['words', function(words){
+
+
+    function Question(englishWord, spanishWord, definition){
+      this.whatIs = englishWord;
+      this.answer = spanishWord;
+      this.clue = definition;
+
+    };
+
+
+    return Question
+
+  }]).factory('Player', ['Question', function(){
+
+    function Player(){
+
+      this.score = 0;
+
+    };
+
+    return Player
+
+
   }]);
