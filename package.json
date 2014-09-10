@@ -7,7 +7,10 @@
     "nodemon": "~1.0.8",
     "express": "~3.4.7",
     "ejs": "~0.8.5",
-    "bower": "~1.2.8"
+    "bower": "~1.2.8",
+    "karma": "^0.12.22",
+    "karma-jasmine": "^0.1.5",
+    "karma-phantomjs-launcher": "^0.1.4"
   },
   "scripts": {
     "install": "node node_modules/protractor/bin/webdriver-manager update"

@@ -5,6 +5,8 @@
 angular.module('myApp.controllers', [])
   .controller('AppCtrl', function($scope, $http) {
 
+    $scope.testing = "hello"
+
     $http({
       method: 'GET',
       url: '/api/name'
