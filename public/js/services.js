@@ -50,9 +50,11 @@ angular.module('myApp.services', [])
     def: "Kind and pleasant."
   }])
 
-  .factory('Game', ['words', 'Question', function(words, Question){
+  .factory('Game', ['words', 'Question', 'Player', function(words, Question, Player){
 
-    function Game(){
+    function Game(player){
+
+      this.player = player;
 
       this.availableQuestions = _.map(words, function(word){
         return new Question(word["en"], word["es"], word["def"])
@@ -100,16 +102,19 @@ angular.module('myApp.services', [])
 
       this.score = 0;
       this.hasLost = false;
+      this.hasWon = false;
 
     };
 
     Player.prototype.answer = function(question, selection) {
       if (selection === question.answer) { 
         this.score ++ 
+        this.hasWon = (this.score === 3) ? true : false
       } else {
         this.hasLost = true;
       }
     };
+
 
     return Player
 

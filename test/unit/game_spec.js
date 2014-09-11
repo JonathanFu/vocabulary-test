@@ -3,28 +3,37 @@ describe("Service: Game", function () {
   var Question;
   var game;
   var words;
+  var Player;
+  var player
 
   beforeEach(module("myApp"));
 
 
-  beforeEach(inject(function (_Game_, _Question_, _words_) {
+  beforeEach(inject(function (_Game_, _Question_, _words_, _Player_) {
     Game = _Game_;
     Question = _Question_;
     words = _words_;
+    Player = _Player_;
   }));
 
+  	beforeEach(function(){
+  		player = new Player();
+	  	game = new Game(player);
+
+  	});
+
+  it('has a player', function(){
+  	expect(game.player).toEqual(player)
+  });
 
 
   it('has 11 available questions', function(){
-
-  	var game = new Game();
   	expect(game.availableQuestions.length).toEqual(11);
   	expect(game.availableQuestions[0]).toEqual(jasmine.any(Question))
 
   });
 
   it('has 0 asked questions', function(){
-  	var game = new Game();
   	expect(game.askedQuestions.length).toEqual(0);
   });
 
@@ -38,12 +47,10 @@ describe("Service: Game", function () {
 
   describe ("presenting choices", function(){
 
-  	var game, question
+  	var question
 
   	beforeEach(function(){
-	  	game = new Game();
 	  	question = new Question("Germany", "Alemania", "Country");
-
   	});
 
 	  it('when presenting choices for the first question, picks two randomly chosen words plus the answer', function(){
