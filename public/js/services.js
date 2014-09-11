@@ -55,11 +55,25 @@ angular.module('myApp.services', [])
     function Game(){
 
       this.availableQuestions = _.map(words, function(word){
-        new Question(word["en"], word["es"], word["def"])
+        return new Question(word["en"], word["es"], word["def"])
       })
 
       this.askedQuestions = [];
 
+    };
+
+    Game.prototype.ask = function(question) {
+      var index = this.availableQuestions.indexOf(question);
+      this.availableQuestions.splice(index, 1)
+      this.askedQuestions.push(question)
+    };
+
+    Game.prototype.presentChoicesFor = function(question) {
+      var array = [];
+      array.push(question.answer);
+      (this.askedQuestions.length > 0) ? array.push(_.sample(this.askedQuestions).answer) : array.push(_.sample(this.availableQuestions).answer)
+      array.push(_.sample(this.availableQuestions).answer)
+      return (_.uniq(array).length === 3) ? array : this.presentChoicesFor(question)
     };
 
     return Game;
@@ -85,7 +99,16 @@ angular.module('myApp.services', [])
     function Player(){
 
       this.score = 0;
+      this.hasLost = false;
 
+    };
+
+    Player.prototype.answer = function(question, selection) {
+      if (selection === question.answer) { 
+        this.score ++ 
+      } else {
+        this.hasLost = true;
+      }
     };
 
     return Player
