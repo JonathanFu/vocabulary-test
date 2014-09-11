@@ -78,6 +78,10 @@ angular.module('myApp.services', [])
       return (_.uniq(array).length === 3) ? array : this.presentChoicesFor(question)
     };
 
+    Game.prototype.isOver = function() {
+      return (this.player.hasLost || this.player.hasWon)
+    };
+
     return Game;
 
 

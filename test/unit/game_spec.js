@@ -4,7 +4,8 @@ describe("Service: Game", function () {
   var game;
   var words;
   var Player;
-  var player
+  var player;
+  var question
 
   beforeEach(module("myApp"));
 
@@ -19,7 +20,7 @@ describe("Service: Game", function () {
   	beforeEach(function(){
   		player = new Player();
 	  	game = new Game(player);
-
+	  	question = new Question("hello", "hola", "greeting");
   	});
 
   it('has a player', function(){
@@ -43,6 +44,17 @@ describe("Service: Game", function () {
   	game.ask(question)
   	expect(game.availableQuestions).not.toContain(question);
   	expect(game.askedQuestions).toContain(question);
+  });
+
+  it('is finished when a player has lost', function(){
+  	game.player.answer(question, "si");
+  	expect(game.isOver()).toBe(true);
+  });
+
+  it('is finished after the player has answered all three questions', function(){
+  	game.player.score = 2
+  	game.player.answer(question, "hola")
+  	expect(game.isOver()).toBe(true)
   });
 
   describe ("presenting choices", function(){
