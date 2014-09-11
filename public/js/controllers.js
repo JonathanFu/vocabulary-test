@@ -3,10 +3,11 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-  .controller('AppCtrl', function($scope, $http) {
+  .controller('AppCtrl', function($scope, $http, Game) {
 
     $scope.testing = "hello"
 
+    
 
 
     $http({
@@ -20,8 +21,13 @@ angular.module('myApp.controllers', [])
       $scope.name = 'Error!'
     });
 
-  }).controller('MyCtrl1', function($scope) {
-    // write Ctrl here
+  }).controller('GameCtrl', function($scope, Game, Player) {
+    
+    var player = new Player();
+
+    $scope.game = new Game(player);
+
+
 
   }).controller('MyCtrl2', function($scope) {
     // write Ctrl here

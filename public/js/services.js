@@ -64,18 +64,18 @@ angular.module('myApp.services', [])
 
     };
 
-    Game.prototype.ask = function(question) {
+    Game.prototype.askQuestion = function() {
+      var question = _.sample(this.availableQuestions)
       var index = this.availableQuestions.indexOf(question);
       this.availableQuestions.splice(index, 1)
       this.askedQuestions.push(question)
     };
 
     Game.prototype.presentChoicesFor = function(question) {
-      var array = [];
-      array.push(question.answer);
+      var array = [question.answer];
       (this.askedQuestions.length > 0) ? array.push(_.sample(this.askedQuestions).answer) : array.push(_.sample(this.availableQuestions).answer)
       array.push(_.sample(this.availableQuestions).answer)
-      return (_.uniq(array).length === 3) ? array : this.presentChoicesFor(question)
+      return (_.uniq(array).length === 3) ? _.shuffle(array) : this.presentChoicesFor(question)
     };
 
     Game.prototype.isOver = function() {

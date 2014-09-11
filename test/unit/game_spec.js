@@ -41,9 +41,10 @@ describe("Service: Game", function () {
   it('when asking a question, adds it to the list of unavailable questions', function(){
   	var game = new Game();
   	var question = new Question("hello", "hola", "greeting");
-  	game.ask(question)
-  	expect(game.availableQuestions).not.toContain(question);
-  	expect(game.askedQuestions).toContain(question);
+  	game.askQuestion()
+  	// expect(game.availableQuestions).not.toContain(question);
+    expect(game.availableQuestions.length).toEqual(10);
+  	expect(game.askedQuestions.length).toEqual(1);
   });
 
   it('is finished when a player has lost', function(){
@@ -82,10 +83,11 @@ describe("Service: Game", function () {
 	  });
 
 	  it('if there is a previously asked question, contain one of those answers', function(){
-	  	game.ask(question);
+	  	game.askQuestion();
+      var previousAnswer = game.askedQuestions[0].answer
 	  	var newQuestion = new Question("Apple", "Manzana", "fruit");
 	  	var choices = game.presentChoicesFor(newQuestion);
-	  	expect(choices).toContain("Alemania");
+	  	expect(choices).toContain(previousAnswer);
 	  });
 
 
