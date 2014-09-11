@@ -49,19 +49,24 @@ describe("Service: Game", function () {
 	  it('when presenting choices for the first question, picks two randomly chosen words plus the answer', function(){
 
 	  	var choices = game.presentChoicesFor(question)
+	  	expect(choices.length).toEqual(3);
 	  	expect(choices).toContain("Alemania");
 	  	var allWords = _.map(words, function(word){return word["es"]});
 	  	var intersection = _.intersection(allWords, choices);
 	  	expect(intersection.length).toEqual(3);
-	  	
+
  		 });
 
 	  it('must be unique', function(){
-
+	  	var choices = game.presentChoicesFor(question);
+	  	expect(_.uniq(choices).length).toEqual(3);
 	  });
 
 	  it('if there is a previously asked question, contain one of those answers', function(){
-
+	  	game.ask(question);
+	  	var newQuestion = new Question("Apple", "Manzana", "fruit");
+	  	var choices = game.presentChoicesFor(newQuestion);
+	  	expect(choices).toContain("Alemania");
 	  });
 
 
