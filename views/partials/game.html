@@ -1,10 +1,31 @@
-What is '{{currentQuestion.whatIs}}' in Spanish?
+<div ng-hide="game.isOver()">
+
+	What is '{{currentQuestion.whatIs}}' in Spanish?
+
+	Definition: '{{currentQuestion.clue}}'
+
+	<ul>
+		<li ng-repeat="choice in choices">
+			<a href="#" ng-click="choose(choice)">
+				{{choice}}
+			</a>
+
+		</li>
 
 
-<ul>
-	<li ng-repeat="choice in choices">
-		{{choice}}
-	</li>
+	</ul>
+
+</div>
+
+<div ng-show="game.isOver()">
+	
+	You have a score of {{player.score}}
+
+	Please enter your name:
+
+	<form ng-submit="player.name && submitForm()">
+		<input ng-model="player.name">
+	</form>
 
 
-</ul>
+</div>

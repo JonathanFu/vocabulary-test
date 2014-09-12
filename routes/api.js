@@ -7,3 +7,5 @@ exports.name = function (req, res) {
   	name: 'Bob'
   });
 };
+
+

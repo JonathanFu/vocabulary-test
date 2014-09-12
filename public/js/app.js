@@ -15,7 +15,11 @@ angular.module('myApp', [
   }).when('/game', {
     templateUrl: 'partials/game.html',
     controller: 'GameCtrl'
-  }).otherwise({
+  }).when('/highscore', {
+    templateUrl: 'partials/highscore.html',
+    controller: 'HighscoreCtrl'
+  })
+  .otherwise({
     redirectTo: '/home'
   });
 

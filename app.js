@@ -52,7 +52,18 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 // JSON API
+
+var scores = [];
+
 app.get('/api/name', api.name);
+
+app.post('/api/scores', function(req, res){
+	scores.push({name: req.body.name, score: req.body.score})
+})
+
+app.get('/api/scores', function(req, res){
+	res.json(scores);
+})
 
 // redirect all others to the index (HTML5 history)
 app.get('/home', routes.index);

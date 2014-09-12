@@ -3,39 +3,40 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-  .controller('AppCtrl', function($scope, $http, Game) {
+  .controller('AppCtrl', function($scope) {
 
-    $scope.testing = "hello"
 
+
+  }).controller('GameCtrl', function($scope, Game, Player, $http, $location) {
     
+    $scope.player = new Player();
 
+    $scope.game = new Game($scope.player);
 
-    $http({
-      method: 'GET',
-      url: '/api/name'
-    }).
-    success(function(data, status, headers, config) {
-      $scope.name = data.name;
-    }).
-    error(function(data, status, headers, config) {
-      $scope.name = 'Error!'
+    $scope.currentQuestion = $scope.game.askQuestion();
+
+    $scope.choices = $scope.game.presentChoicesFor($scope.currentQuestion);
+
+    $scope.$watch('currentQuestion', function(){
+      $scope.choices = $scope.game.presentChoicesFor($scope.currentQuestion)
     });
 
-  }).controller('GameCtrl', function($scope, Game, Player) {
+    $scope.choose = function(choice){
+      $scope.player.answer($scope.currentQuestion, choice);
+      $scope.currentQuestion = $scope.game.askQuestion();
+    };
+
+    $scope.submitForm = function(){
+      $http.post('/api/scores', {name: $scope.player.name, score: $scope.player.score})
+      $location.url('/highscore')
+    };
+
+
+  }).controller('HighscoreCtrl', function($scope, $http) {
     
-    var player = new Player();
+    $http.get('/api/scores').success(function(data){
+      $scope.players = data;
 
-    var game = new Game(player);
-
-    var currentQuestion = game.askQuestion();
-
-    $scope.currentQuestion = currentQuestion;
-
-    console.log(game.presentChoicesFor(currentQuestion))
-
-    // $scope.choices = game.presentChoicesFor(currentQuestion);
-
-  }).controller('MyCtrl2', function($scope) {
-    // write Ctrl here
+    });
 
   });
