@@ -25,3 +25,5 @@ angular.module('myApp', [
 
   $locationProvider.html5Mode(true);
 });
+
+angular.module('myApp.services', []);

@@ -20,6 +20,7 @@ module.exports = function(config) {
         '../public/bower_components/angular-mocks/angular-mocks.js',
         '../public/bower_components/underscore/underscore.js',
         '../public/js/*.js',
+        '../public/js/services/*.js',
         'unit/*.js'
     ],
 
