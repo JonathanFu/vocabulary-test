@@ -42,7 +42,6 @@ describe("Service: Game", function () {
   	var game = new Game();
   	var question = new Question("hello", "hola", "greeting");
   	game.askQuestion()
-  	// expect(game.availableQuestions).not.toContain(question);
     expect(game.availableQuestions.length).toEqual(10);
   	expect(game.askedQuestions.length).toEqual(1);
   });

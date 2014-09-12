@@ -15,8 +15,6 @@ angular.module('myApp.controllers', [])
 
     $scope.currentQuestion = $scope.game.askQuestion();
 
-    $scope.choices = $scope.game.presentChoicesFor($scope.currentQuestion);
-
     $scope.$watch('currentQuestion', function(){
       $scope.choices = $scope.game.presentChoicesFor($scope.currentQuestion)
     });
