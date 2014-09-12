@@ -25,9 +25,15 @@ angular.module('myApp.controllers', [])
     
     var player = new Player();
 
-    $scope.game = new Game(player);
+    var game = new Game(player);
 
+    var currentQuestion = game.askQuestion();
 
+    $scope.currentQuestion = currentQuestion;
+
+    console.log(game.presentChoicesFor(currentQuestion))
+
+    // $scope.choices = game.presentChoicesFor(currentQuestion);
 
   }).controller('MyCtrl2', function($scope) {
     // write Ctrl here

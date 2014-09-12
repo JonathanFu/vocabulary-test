@@ -83,11 +83,11 @@ describe("Service: Game", function () {
 	  });
 
 	  it('if there is a previously asked question, contain one of those answers', function(){
-	  	game.askQuestion();
-      var previousAnswer = game.askedQuestions[0].answer
+      game.askedQuestions = [question, new Question("meat", "carne", "food")]
 	  	var newQuestion = new Question("Apple", "Manzana", "fruit");
 	  	var choices = game.presentChoicesFor(newQuestion);
-	  	expect(choices).toContain(previousAnswer);
+      var intersection = _.intersection(choices, ["carne", "Alemania"])
+      expect(intersection.length).toEqual(1);
 	  });
 
 

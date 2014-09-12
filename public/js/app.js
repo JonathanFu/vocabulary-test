@@ -11,7 +11,7 @@ angular.module('myApp', [
 ]).config(function($routeProvider, $locationProvider) {
   $routeProvider.when('/home', {
     templateUrl: 'partials/home.html',
-    controller: 'MyCtrl1'
+    controller: 'AppCtrl'
   }).when('/game', {
     templateUrl: 'partials/game.html',
     controller: 'GameCtrl'
