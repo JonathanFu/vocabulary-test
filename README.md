@@ -21,7 +21,7 @@ An AngularJS on Node test for a tech company to implement a simple Spanish vocab
 
 * For the sake of simplicity and to make the code cleaner and more manageable, I decided to abstract all relevant classes (Game, Player, Question and Words) into separate services.
 * I made the Game class in control of holding arrays of available questions and previously asked questions - allowing it to decide what choices to present to the user. The game is also in control of asking questions - when it removes a question from the available questions array, places it in the asked questions array, and returns the question.
-* The words class, already hardcoded by the company, is an array of objects with the Spanish word, English word, and definition.
+* The words service, already hardcoded by the company, is an array of objects with the Spanish word, English word, and definition.
 * The Question class merely turns objects from the words service into Question objects.
 * The Player class is responsible for holding a score, knowing if it has won or lost, and answering questions.
 * The Game Controller is responsible for instantiating a new game, a new player, processing the player's choice when s/he clicks on it, posting via $http the player's name and scores to the Node server upon receiving the name, and redirecting the user to the highscores page.
