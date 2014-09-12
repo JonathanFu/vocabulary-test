@@ -34,4 +34,4 @@ angular.module('myApp.services').factory('Game', ['words', 'Question', 'Player',
   return Game;
 
 
-  }])
+}])

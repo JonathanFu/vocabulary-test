@@ -42,5 +42,5 @@ angular.module('myApp.services').value('words', [{
     "en": "Friendly",
     "es": "Amigable",
     def: "Kind and pleasant."
-  }])
+}])
 
