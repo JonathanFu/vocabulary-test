@@ -14,5 +14,9 @@
   },
   "scripts": {
     "install": "node node_modules/protractor/bin/webdriver-manager update"
+  },
+  "devDependencies": {
+    "istanbul": "^0.3.2",
+    "karma-coverage": "^0.2.6"
   }
 }

@@ -1,5 +1,7 @@
 #Vocabulary Test
 
+[![Code Climate](https://codeclimate.com/github/jpatel531/vocabulary-test/badges/gpa.svg)](https://codeclimate.com/github/jpatel531/vocabulary-test) [![Test Coverage](https://codeclimate.com/github/jpatel531/vocabulary-test/badges/coverage.svg)](https://codeclimate.com/github/jpatel531/vocabulary-test)
+
 An AngularJS on Node test for a tech company to implement a simple Spanish vocabulary game. An exercise in object-oriented design for AngularJS and thorough test-driven development with Karma.
 
 ##Description
